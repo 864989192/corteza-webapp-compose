@@ -1,0 +1,19 @@
+// @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600&display=swap');
+
+[dir="rtl"] {
+  margin: 0;
+  text-align: left;
+  background-color: #f3f3f5;
+
+  .vs__dropdown-toggle {
+    flex-direction: row-reverse;
+
+    input {
+      text-align: right;
+    }
+  }
+
+  .vs__selected-options {
+    flex-direction: row-reverse;
+  }
+}
