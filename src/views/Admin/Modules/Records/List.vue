@@ -28,6 +28,16 @@
         </b-button>
       </b-button-group>
     </portal>
+    <!-- for testing -->
+    <div
+      v-for="(f, i) in block.options.fields"
+      :key="i"
+    >
+      <p>
+        {{ f }}
+      </p>
+      <hr>
+    </div>
 
     <record-list-base
       v-if="block"
@@ -41,7 +51,7 @@
 
 <script>
 
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import { compose } from '@cortezaproject/corteza-js'
 import RecordListBase from 'corteza-webapp-compose/src/components/PageBlocks/RecordListBase'
 
@@ -90,6 +100,20 @@ export default {
     },
   },
 
+  watch: {
+    // watcher receives two parameters: newValue and oldValue
+    'block.options.fields': {
+      handler (newValue, oldValue) {
+        // if old value isn't null persist change
+        if (oldValue) {
+          // magic code goes here
+        }
+      },
+      immediate: true,
+      deep: true,
+    },
+  },
+
   created () {
     // Init block
     this.block = new compose.PageBlockRecordList({
@@ -113,6 +137,12 @@ export default {
       rowEditUrl: 'admin.modules.record.edit',
       rowCreateUrl: 'admin.modules.record.create',
     }
+  },
+
+  methods: {
+    ...mapActions({
+      updatePage: 'page/update',
+    }),
   },
 }
 </script>
